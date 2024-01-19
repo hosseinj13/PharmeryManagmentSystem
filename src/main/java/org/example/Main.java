@@ -1,19 +1,81 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
+import service.AdminService;
+import service.MedicineService;
+import service.PatientService;
+import service.PrescriptionService;
+import utility.ApplicationContext;
+
+import java.sql.SQLException;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+    private static final AdminService adminService = ApplicationContext.getAdminService();
+    private static final MedicineService medicineService = ApplicationContext.getMedicineService();
+    private static final PatientService patientService = ApplicationContext.getPatientService();
+    private static final PrescriptionService prescriptionService = ApplicationContext.getPrescriptionService();
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+
+    public static void main(String[] args) throws SQLException {
+        Scanner input = new Scanner(System.in);
+        System.out.println("***************** (～￣▽￣)～ Welcome to pharmacy (～￣▽￣)～  *****************");
+
+        System.out.println("1 : Dr logging  " +
+                "\n2 : Admin logging ");
+        int num = input.nextInt();
+
+        switch (num){
+            case 1->{
+                System.out.println(
+                        "\n1 : log in " +
+                        "\n2 : exit");
+                System.out.println("input :");
+                int in = input.nextInt();
+                switch (in){
+                    case 1->{
+                        adminService.login();
+                    }case 2->{
+                        break;
+                    }
+                }
+
+
+            }case 2->{
+
+                System.out.println("1 : sign up " +
+                        "\n2 : log in " +
+                        "\n3 : exit");
+                int in = input.nextInt();
+
+                switch (in){
+                    case 1 ->{
+                        adminService.register();
+                        break;
+                    }case 2 ->{
+                        adminService.login();
+                        break;
+                    }case 3 ->{
+                        break;
+                    }
+                }
+            }
         }
+        System.out.println("1 : sign in " +
+                "\n2 : log in " +
+                "\n3 : exit");
+        int in = input.nextInt();
+
+        switch (in){
+            case 1 ->{
+                adminService.register();
+                break;
+            }case 2 ->{
+                adminService.login();
+                break;
+            }
+        }
+
     }
 }

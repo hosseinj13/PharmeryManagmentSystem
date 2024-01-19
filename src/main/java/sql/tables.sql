@@ -22,11 +22,24 @@ CREATE TABLE IF NOT EXISTS medicine
 (
     medicine_id     SERIAL PRIMARY KEY,
     medicine_name   VARCHAR(255) UNIQUE NOT NULL,
-    price           INT                 NOT NULL,
-    prescription_id INT,
-    FOREIGN KEY (prescription_id) REFERENCES prescription (prescription_id)
-
+    price           INT                 NOT NULL
+   /* prescription_id INT,
+    FOREIGN KEY (prescription_id) REFERENCES prescription (prescription_id)*/
 );
+
+CREATE TABLE IF NOT EXISTS medicine_prescription
+(
+    prescription_id INT,
+    medicine_id INT,
+
+    FOREIGN KEY (prescription_id) REFERENCES prescription (prescription_id),
+    FOREIGN KEY (medicine_id) REFERENCES medicine (medicine_id)
+);
+
+//query
+
+    --select username from admin where exists(select username from admin where username = ? and password = ?)
+    --update medicine set price = ? where medicine_id = ?
 
 
 
