@@ -22,4 +22,7 @@ public class PatientRepository {
         preparedStatement.setString(1, patient.getNationalCode() );
         preparedStatement.executeUpdate();
     }
+
+
+    public boolean
 }
